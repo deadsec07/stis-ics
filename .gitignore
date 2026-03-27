@@ -1,0 +1,17 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+data/raw/*.csv
+!data/raw/.gitkeep
+
+results/demo/
+results/ci-demo/
+results/debug_demo/
+results/batadal/
+results/batadal_tuned/
+results/batadal_unlabeled/

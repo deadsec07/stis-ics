@@ -1,0 +1,125 @@
+name: batadal_unlabeled_test
+train_path: data/raw/BATADAL_dataset03.csv
+test_path: data/raw/BATADAL_test_dataset.csv
+timestamp_column: DATETIME
+label_column:
+timestamp_format: "%d/%m/%y %H"
+sort_by_time: true
+fill_method: ffill_bfill
+sensor_columns:
+  - L_T1
+  - L_T2
+  - L_T3
+  - L_T4
+  - L_T5
+  - L_T6
+  - L_T7
+  - F_PU1
+  - F_PU2
+  - F_PU3
+  - F_PU4
+  - F_PU5
+  - F_PU6
+  - F_PU7
+  - F_PU8
+  - F_PU9
+  - F_PU10
+  - F_PU11
+  - F_V2
+  - P_J280
+  - P_J269
+  - P_J300
+  - P_J256
+  - P_J289
+  - P_J415
+  - P_J302
+  - P_J306
+  - P_J307
+  - P_J317
+  - P_J14
+  - P_J422
+actuator_columns:
+  - S_PU1
+  - S_PU2
+  - S_PU3
+  - S_PU4
+  - S_PU5
+  - S_PU6
+  - S_PU7
+  - S_PU8
+  - S_PU9
+  - S_PU10
+  - S_PU11
+  - S_V2
+context_columns: []
+feature_columns:
+  - L_T1
+  - L_T2
+  - L_T3
+  - L_T4
+  - L_T5
+  - L_T6
+  - L_T7
+  - F_PU1
+  - S_PU1
+  - F_PU2
+  - S_PU2
+  - F_PU3
+  - S_PU3
+  - F_PU4
+  - S_PU4
+  - F_PU5
+  - S_PU5
+  - F_PU6
+  - S_PU6
+  - F_PU7
+  - S_PU7
+  - F_PU8
+  - S_PU8
+  - F_PU9
+  - S_PU9
+  - F_PU10
+  - S_PU10
+  - F_PU11
+  - S_PU11
+  - F_V2
+  - S_V2
+  - P_J280
+  - P_J269
+  - P_J300
+  - P_J256
+  - P_J289
+  - P_J415
+  - P_J302
+  - P_J306
+  - P_J307
+  - P_J317
+  - P_J14
+  - P_J422
+threshold:
+  method: percentile
+  percentile: 90.0
+scoring:
+  alpha: 1.0
+  beta: 1.0
+  gamma: 0.0
+  epsilon: 1.0e-6
+  deviation_method: mad
+  rolling_window: 72
+discretizer:
+  strategy: quantile
+  bins: 4
+  columns:
+    - S_PU1
+    - S_PU2
+    - S_PU4
+    - S_PU7
+    - S_PU8
+    - S_PU10
+    - S_PU11
+    - S_V2
+    - L_T1
+    - L_T4
+    - L_T7
+    - F_V2
+attack_intervals_path:

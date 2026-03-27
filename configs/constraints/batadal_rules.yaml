@@ -1,0 +1,42 @@
+rules:
+  - name: pu1_on_without_flow_response
+    type: expected_response
+    trigger_column: S_PU1
+    response_column: F_PU1
+    lag: 2
+    min_delta: 1.0
+    weight: 1.2
+
+  - name: pu2_on_without_flow_response
+    type: expected_response
+    trigger_column: S_PU2
+    response_column: F_PU2
+    lag: 2
+    min_delta: 1.0
+    weight: 1.2
+
+  - name: valve_v2_open_without_flow_response
+    type: expected_response
+    trigger_column: S_V2
+    response_column: F_V2
+    lag: 2
+    min_delta: 0.5
+    weight: 1.0
+
+  - name: tank1_level_rises_with_pump1_off
+    type: unexpected_rise
+    control_column: S_PU1
+    observed_column: L_T1
+    control_off_value: 0
+    lag: 2
+    max_delta: 0.15
+    weight: 1.0
+
+  - name: tank4_level_rises_with_pump7_off
+    type: unexpected_rise
+    control_column: S_PU7
+    observed_column: L_T4
+    control_off_value: 0
+    lag: 2
+    max_delta: 0.15
+    weight: 1.0

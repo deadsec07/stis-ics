@@ -1,0 +1,86 @@
+{
+  "isolation_forest": {
+    "num_samples": 4177,
+    "num_labeled_samples": 219,
+    "precision": 1.0,
+    "recall": 0.3150684931506849,
+    "f1": 0.4791666666666667,
+    "pr_auc": 0.9999999999999998,
+    "confusion_matrix": [
+      [
+        0,
+        0
+      ],
+      [
+        150,
+        69
+      ]
+    ],
+    "detection_delay": 2.0,
+    "roc_auc": null,
+    "threshold": 0.5568886292081004
+  },
+  "one_class_svm": {
+    "num_samples": 4177,
+    "num_labeled_samples": 219,
+    "precision": 1.0,
+    "recall": 0.6301369863013698,
+    "f1": 0.773109243697479,
+    "pr_auc": 0.9999999999999998,
+    "confusion_matrix": [
+      [
+        0,
+        0
+      ],
+      [
+        81,
+        138
+      ]
+    ],
+    "detection_delay": 0.0,
+    "roc_auc": null,
+    "threshold": -53.837225046893586
+  },
+  "lof": {
+    "num_samples": 4177,
+    "num_labeled_samples": 219,
+    "precision": 1.0,
+    "recall": 0.7397260273972602,
+    "f1": 0.8503937007874016,
+    "pr_auc": 0.9999999999999998,
+    "confusion_matrix": [
+      [
+        0,
+        0
+      ],
+      [
+        57,
+        162
+      ]
+    ],
+    "detection_delay": 0.0,
+    "roc_auc": null,
+    "threshold": 1.137329016916786
+  },
+  "windowed_autoencoder": {
+    "num_samples": 4177,
+    "num_labeled_samples": 219,
+    "precision": 1.0,
+    "recall": 0.8264840182648402,
+    "f1": 0.905,
+    "pr_auc": 0.9999999999999998,
+    "confusion_matrix": [
+      [
+        0,
+        0
+      ],
+      [
+        38,
+        181
+      ]
+    ],
+    "detection_delay": 0.0,
+    "roc_auc": null,
+    "threshold": 0.17904543218891253
+  }
+}

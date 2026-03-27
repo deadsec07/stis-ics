@@ -1,0 +1,28 @@
+rules:
+  - name: valve_open_without_flow_response
+    type: expected_response
+    trigger_column: MV101
+    response_column: FIT101
+    lag: 2
+    min_delta: 0.3
+    weight: 1.5
+
+  - name: pressure_rises_with_pump_off
+    type: unexpected_rise
+    control_column: P101
+    observed_column: PIT101
+    control_off_value: 0
+    lag: 2
+    max_delta: 0.2
+    weight: 2.0
+
+  - name: tank_level_drops_despite_inlet
+    type: balance_consistency
+    level_column: LIT101
+    inlet_column: MV101
+    outlet_column: P101
+    inlet_on_value: 1
+    outlet_off_value: 0
+    lag: 2
+    tolerance: 0.1
+    weight: 1.2

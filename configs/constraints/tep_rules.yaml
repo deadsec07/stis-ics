@@ -1,0 +1,17 @@
+rules:
+  - name: control_move_without_expected_measurement_response
+    type: expected_response
+    trigger_column: xmv_1
+    response_column: xmeas_1
+    lag: 2
+    min_delta: 0.2
+    weight: 1.0
+
+  - name: process_variable_rises_while_actuator_off
+    type: unexpected_rise
+    control_column: xmv_2
+    observed_column: xmeas_2
+    control_off_value: 0
+    lag: 2
+    max_delta: 0.2
+    weight: 1.0

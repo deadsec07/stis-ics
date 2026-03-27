@@ -1,0 +1,43 @@
+name: tep
+train_path: data/raw/TEP_train.csv
+test_path: data/raw/TEP_test.csv
+timestamp_column: timestamp
+label_column: label
+timestamp_format:
+sort_by_time: true
+fill_method: ffill_bfill
+sensor_columns:
+  - xmeas_1
+  - xmeas_2
+  - xmeas_3
+actuator_columns:
+  - xmv_1
+  - xmv_2
+context_columns:
+  - mode
+feature_columns:
+  - xmeas_1
+  - xmeas_2
+  - xmeas_3
+  - xmv_1
+  - xmv_2
+  - mode
+threshold:
+  method: percentile
+  percentile: 99.0
+scoring:
+  alpha: 1.0
+  beta: 1.0
+  gamma: 1.0
+  epsilon: 1.0e-6
+  deviation_method: mad
+  rolling_window: 50
+discretizer:
+  strategy: quantile
+  bins: 4
+  columns:
+    - xmv_1
+    - xmv_2
+    - mode
+    - xmeas_1
+attack_intervals_path:

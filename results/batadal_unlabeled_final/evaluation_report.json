@@ -1,0 +1,21 @@
+{
+  "dataset": "batadal_unlabeled_test",
+  "threshold": 1.3268027312226969,
+  "metrics": {
+    "num_samples": 2089
+  },
+  "ablations": {
+    "value_only": {
+      "num_samples": 2089,
+      "threshold": 0.9832303829079018
+    },
+    "value_transition": {
+      "num_samples": 2089,
+      "threshold": 1.3268027312226969
+    },
+    "full": {
+      "num_samples": 2089,
+      "threshold": 1.3268027312226969
+    }
+  }
+}

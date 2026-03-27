@@ -1,0 +1,48 @@
+name: sw_at
+train_path: data/raw/SWaT_train.csv
+test_path: data/raw/SWaT_test.csv
+timestamp_column: Timestamp
+label_column: Normal/Attack
+timestamp_format:
+sort_by_time: true
+fill_method: ffill_bfill
+sensor_columns:
+  - FIT101
+  - LIT101
+  - PIT101
+  - AIT201
+actuator_columns:
+  - MV101
+  - P101
+  - P102
+context_columns:
+  - stage
+feature_columns:
+  - FIT101
+  - LIT101
+  - PIT101
+  - AIT201
+  - MV101
+  - P101
+  - P102
+  - stage
+threshold:
+  method: percentile
+  percentile: 99.0
+scoring:
+  alpha: 1.0
+  beta: 1.0
+  gamma: 1.2
+  epsilon: 1.0e-6
+  deviation_method: mad
+  rolling_window: 50
+discretizer:
+  strategy: quantile
+  bins: 4
+  columns:
+    - MV101
+    - P101
+    - P102
+    - stage
+    - FIT101
+attack_intervals_path:

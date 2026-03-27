@@ -1,0 +1,21 @@
+{
+  "dataset": "batadal",
+  "num_train_rows": 8761,
+  "num_test_rows": 4177,
+  "num_features": 43,
+  "state_columns": [
+    "S_PU1",
+    "S_PU2",
+    "S_PU4",
+    "S_PU7",
+    "S_PU8",
+    "S_PU10",
+    "S_PU11",
+    "S_V2",
+    "L_T1",
+    "L_T4",
+    "L_T7",
+    "F_V2"
+  ],
+  "threshold": 1.3268027312226969
+}
