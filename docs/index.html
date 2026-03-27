@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STIS | State Transition Integrity Scoring</title>
+  <meta
+    name="description"
+    content="STIS is an interpretable anomaly detection framework for industrial control systems that scores state transitions instead of isolated values."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Industrial Control Systems Research</p>
+        <h1>STIS</h1>
+        <p class="subtitle">State Transition Integrity Scoring for interpretable ICS anomaly detection.</p>
+        <p class="lede">
+          STIS detects anomalies by scoring transitions between system states, combining sensor deviation,
+          transition rarity, and rule-based control consistency into a single interpretable alert score.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/deadsec07/stis-ics">View Repository</a>
+          <a class="button secondary" href="https://github.com/deadsec07/stis-ics/blob/main/README.md">Read README</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <p class="card-label">Scoring Equation</p>
+        <pre><code>STIS(t) = alpha * ValueDeviation(t)
+        + beta  * TransitionRarity(t)
+        + gamma * ConstraintViolationScore(t)</code></pre>
+        <p class="card-note">
+          Final public BATADAL default: tuned to emphasize value deviation and transition rarity with zero-delay attack detection.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid metrics">
+      <article class="metric">
+        <span class="metric-value">0.7627</span>
+        <span class="metric-label">STIS F1 on BATADAL dataset04</span>
+      </article>
+      <article class="metric">
+        <span class="metric-value">0.6164</span>
+        <span class="metric-label">STIS recall on labeled attack rows</span>
+      </article>
+      <article class="metric">
+        <span class="metric-value">0.0</span>
+        <span class="metric-label">Mean detection delay</span>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Why It Matters</p>
+        <h2>Transitions are often where ICS attacks reveal themselves.</h2>
+      </div>
+      <div class="grid three">
+        <article class="panel">
+          <h3>Value deviation</h3>
+          <p>Flags continuous sensor behavior that departs from learned normal operating patterns.</p>
+        </article>
+        <article class="panel">
+          <h3>Transition rarity</h3>
+          <p>Uses a Markov-style state model to catch unlikely control and process transitions.</p>
+        </article>
+        <article class="panel">
+          <h3>Constraint violations</h3>
+          <p>Encodes interpretable process rules such as missing flow response or unexpected tank behavior.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Benchmark Snapshot</p>
+        <h2>Public BATADAL benchmark included in the repository.</h2>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>F1</th>
+              <th>Recall</th>
+              <th>Detection Delay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Windowed Autoencoder</td>
+              <td>0.9050</td>
+              <td>0.8265</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td>LOF</td>
+              <td>0.8504</td>
+              <td>0.7397</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td>One-Class SVM</td>
+              <td>0.7731</td>
+              <td>0.6301</td>
+              <td>0.0</td>
+            </tr>
+            <tr class="highlight">
+              <td>STIS</td>
+              <td>0.7627</td>
+              <td>0.6164</td>
+              <td>0.0</td>
+            </tr>
+            <tr>
+              <td>Isolation Forest</td>
+              <td>0.4792</td>
+              <td>0.3151</td>
+              <td>2.0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">
+          BATADAL dataset04 contains labeled attack rows and unlabeled rows. This benchmark compares models on the labeled attack subset currently supported in the repo.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Visuals</p>
+        <h2>Generated directly from the repository outputs.</h2>
+      </div>
+      <div class="gallery">
+        <figure class="panel">
+          <img src="assets/score_timeline.png" alt="STIS anomaly score timeline for BATADAL">
+          <figcaption>Anomaly score timeline with thresholding over BATADAL labeled evaluation data.</figcaption>
+        </figure>
+        <figure class="panel">
+          <img src="assets/transition_heatmap.png" alt="Transition heatmap">
+          <figcaption>Transition model heatmap showing probabilities learned from normal operating transitions.</figcaption>
+        </figure>
+        <figure class="panel">
+          <img src="assets/top_constraints.png" alt="Top violated constraints">
+          <figcaption>Top rule violations surfaced by the STIS constraint engine.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section cta">
+      <div>
+        <p class="eyebrow">Get Started</p>
+        <h2>Clone the repo and run the benchmark locally.</h2>
+      </div>
+      <pre><code>python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python scripts/train_stis.py \
+  --dataset-config configs/datasets/batadal.yaml \
+  --constraints-config configs/constraints/batadal_rules.yaml \
+  --output-dir results/batadal_final</code></pre>
+    </section>
+  </main>
+</body>
+</html>
